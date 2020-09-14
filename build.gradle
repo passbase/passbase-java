@@ -1,0 +1,101 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.+'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+    ext {
+        // read from ENV, fallback from ~/.gradle/gradle.properties
+        awsAccessKeyId = System.env.AWS_ACCESS_KEY_ID ?: AWS_ACCESS_KEY_ID
+        awsSecretAccessKey = System.env.AWS_SECRET_ACCESS_KEY ?: AWS_SECRET_ACCESS_KEY
+    }
+}
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group = 'com.passbase'
+version = '0.0.1'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    jcenter()
+    mavenCentral()
+    repositories {
+        maven {
+            url = "https://passbase-maven.s3.us-east-2.amazonaws.com/releases"
+        }
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'passbase'
+            from components.java
+            pom {
+                name = 'Passbase SDK'
+                description = 'This package is a client meant to be used on the server-side to communicate with Passbase servers.'
+                url = 'https://github.com/passbase/passbase-java'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'passbase'
+                        name = 'Passbase'
+                        email = 'developer@passbase.com'
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = "s3://passbase-maven/releases"
+            credentials(AwsCredentials) {
+                accessKey = awsAccessKeyId
+                secretKey = awsSecretAccessKey
+            }
+        }
+    }
+}
+
+
+install {
+    repositories.mavenInstaller {
+        pom.artifactId = 'passbase'
+    }
+}
+
+task execute(type:JavaExec) {
+    main = System.getProperty('mainClass')
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+dependencies {
+    compile 'io.swagger.core.v3:swagger-annotations:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'io.gsonfire:gson-fire:1.8.3'
+    compile 'javax.annotation:jsr250-api:1.0'
+    testCompile 'junit:junit:4.12'
+}

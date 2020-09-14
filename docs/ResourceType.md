@@ -1,0 +1,11 @@
+# ResourceType
+
+## Enum
+
+* `PASSPORT` (value: `"PASSPORT"`)
+* `DRIVERS_LICENSE` (value: `"DRIVERS_LICENSE"`)
+* `NATIONAL_ID_CARD` (value: `"NATIONAL_ID_CARD"`)
+* `HEALTH_INSURANCE_CARD` (value: `"HEALTH_INSURANCE_CARD"`)
+* `SELFIE_VIDEO` (value: `"SELFIE_VIDEO"`)
+* `PROOF_OF_ADDRESS` (value: `"PROOF_OF_ADDRESS"`)
+* `EMAIL` (value: `"EMAIL"`)
