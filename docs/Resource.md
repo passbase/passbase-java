@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **status** | [**StatusEnum**](#StatusEnum) | Current state of the resource in Passbase&#x27;s systems |  [optional]
 **created** | **Long** | Unix-timestamp of when the resource was created |  [optional]
 **updated** | **Long** | Unix-timestamp of when the resource was updated |  [optional]
-**type** | [**ResourceType**](ResourceType.md) |  |  [optional]
+**type** | **String** |  |  [optional]
 **resourceFiles** | [**ResourceFiles**](ResourceFiles.md) |  |  [optional]
 
 <a name="StatusEnum"></a>

@@ -4,4 +4,4 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **step** | **String** |  |  [optional]
-**resourceTypes** | [**java.util.List&lt;ResourceType&gt;**](ResourceType.md) |  |  [optional]
+**resourceTypes** | **java.util.List&lt;String&gt;** |  |  [optional]
