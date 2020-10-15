@@ -33,52 +33,8 @@ public class ProjectSettingsCustomizations {
   @SerializedName("accent_color")
   private String accentColor = null;
 
-  /**
-   * Font used in the verification flow
-   */
-  @JsonAdapter(FontFamilyEnum.Adapter.class)
-  public enum FontFamilyEnum {
-    ARIAL("Arial"),
-    EXO("Exo"),
-    OPEN_SANS("Open Sans"),
-    LATO("Lato"),
-    BASKERVILLE("Baskerville");
-
-    private String value;
-
-    FontFamilyEnum(String value) {
-      this.value = value;
-    }
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-    public static FontFamilyEnum fromValue(String text) {
-      for (FontFamilyEnum b : FontFamilyEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-    public static class Adapter extends TypeAdapter<FontFamilyEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final FontFamilyEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public FontFamilyEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return FontFamilyEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }  @SerializedName("font_family")
-  private FontFamilyEnum fontFamily = null;
+  @SerializedName("font_family")
+  private String fontFamily = null;
 
   public ProjectSettingsCustomizations buttonColor(String buttonColor) {
     this.buttonColor = buttonColor;
@@ -116,7 +72,7 @@ public class ProjectSettingsCustomizations {
     this.accentColor = accentColor;
   }
 
-  public ProjectSettingsCustomizations fontFamily(FontFamilyEnum fontFamily) {
+  public ProjectSettingsCustomizations fontFamily(String fontFamily) {
     this.fontFamily = fontFamily;
     return this;
   }
@@ -126,11 +82,11 @@ public class ProjectSettingsCustomizations {
    * @return fontFamily
   **/
   @Schema(example = "Arial", description = "Font used in the verification flow")
-  public FontFamilyEnum getFontFamily() {
+  public String getFontFamily() {
     return fontFamily;
   }
 
-  public void setFontFamily(FontFamilyEnum fontFamily) {
+  public void setFontFamily(String fontFamily) {
     this.fontFamily = fontFamily;
   }
 
