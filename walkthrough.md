@@ -4,7 +4,7 @@ Maven users, add this dependency to your project's POM:
 <dependency>
   <groupId>com.passbase</groupId>
   <artifactId>passbase</artifactId>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -12,7 +12,7 @@ Maven users, add this dependency to your project's POM:
 Gradle users, add this dependency to your project's build.gradle:
 
 ```groovy
-compile "com.passbase:passbase:0.0.1"
+compile "com.passbase:passbase:1.0.0"
 ```
 
 ```java

@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.passbase</groupId>
   <artifactId>passbase</artifactId>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.passbase:passbase:0.0.1"
+compile "com.passbase:passbase:1.0.0"
 ```
 
 ### Others
@@ -64,8 +64,8 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/passbase-0.0.1.jar`
-* `target/lib/*.jar`
+- `target/passbase-1.0.0.jar`
+- `target/lib/*.jar`
 
 ## Getting Started
 
