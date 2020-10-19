@@ -1,19 +1,43 @@
-Maven users, add this dependency to your project's POM:
+1. Add Passbase repository
+   Maven users, add this repository to your project's `pom.xml`:
 
-```xml
-<dependency>
-  <groupId>com.passbase</groupId>
-  <artifactId>passbase</artifactId>
-  <version>1.0.2</version>
-  <scope>compile</scope>
-</dependency>
-```
+   ```xml
+   <repository>
+       <id>maven.passbase.com</id>
+       <url>https://passbase-maven.s3.us-east-2.amazonaws.com/releases</url>
+   </repository>
+   ```
 
-Gradle users, add this dependency to your project's build.gradle:
+   Gradle users, add this repository to your project's `build.gradle`
 
-```groovy
-compile "com.passbase:passbase:1.0.2"
-```
+   ```groovy
+   repositories {
+       maven {
+           url = uri('https://passbase-maven.s3.us-east-2.amazonaws.com/releases')
+       }
+   }
+   ```
+
+2. Add Passbase Java SDK to your dependencies
+
+   Maven users, add this depency to your project's `pom.xml`:
+
+   ```xml
+   <dependency>
+   <groupId>com.passbase</groupId>
+   <artifactId>passbase</artifactId>
+   <version>1.0.2</version>
+   <scope>compile</scope>
+   </dependency>
+   ```
+
+   Gradle users, add this dependency to your project's build.gradle:
+
+   ```groovy
+   compile "com.passbase:passbase:1.0.2"
+   ```
+
+3. You should now be able to import `com.passbase.*` into your Java project
 
 ```java
 import com.passbase.*;
