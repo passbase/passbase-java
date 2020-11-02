@@ -5,7 +5,7 @@
   <artifactId>passbase</artifactId>
   <packaging>jar</packaging>
   <name>passbase</name>
-  <version>1.0.3</version>
+  <version>1.1.0</version>
   <url>https://github.com/passbase/passbase-java</url>
   <description>Passbase SDK</description>
   <scm>
