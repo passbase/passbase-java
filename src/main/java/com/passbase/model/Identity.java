@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.passbase.model.IdentityOwner;
 import com.passbase.model.IdentityResource;
 import com.passbase.model.WatchlistResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -79,6 +80,12 @@ public class Identity {
   }  @SerializedName("status")
   private StatusEnum status = null;
 
+  @SerializedName("owner")
+  private IdentityOwner owner = null;
+
+  @SerializedName("score")
+  private Double score = null;
+
   @SerializedName("created")
   private Long created = null;
 
@@ -125,6 +132,42 @@ public class Identity {
 
   public void setStatus(StatusEnum status) {
     this.status = status;
+  }
+
+  public Identity owner(IdentityOwner owner) {
+    this.owner = owner;
+    return this;
+  }
+
+   /**
+   * Get owner
+   * @return owner
+  **/
+  @Schema(description = "")
+  public IdentityOwner getOwner() {
+    return owner;
+  }
+
+  public void setOwner(IdentityOwner owner) {
+    this.owner = owner;
+  }
+
+  public Identity score(Double score) {
+    this.score = score;
+    return this;
+  }
+
+   /**
+   * Float between 0 and 1 representing our confidence that this identity is valid. 0 meaning we couldn&#x27;t verify any of the information provided with accuracy, and 1 absolute confidence.
+   * @return score
+  **/
+  @Schema(example = "0.01000000000000012", description = "Float between 0 and 1 representing our confidence that this identity is valid. 0 meaning we couldn't verify any of the information provided with accuracy, and 1 absolute confidence.")
+  public Double getScore() {
+    return score;
+  }
+
+  public void setScore(Double score) {
+    this.score = score;
   }
 
   public Identity created(Long created) {
@@ -219,6 +262,8 @@ public class Identity {
     Identity identity = (Identity) o;
     return Objects.equals(this.id, identity.id) &&
         Objects.equals(this.status, identity.status) &&
+        Objects.equals(this.owner, identity.owner) &&
+        Objects.equals(this.score, identity.score) &&
         Objects.equals(this.created, identity.created) &&
         Objects.equals(this.updated, identity.updated) &&
         Objects.equals(this.resources, identity.resources) &&
@@ -227,7 +272,7 @@ public class Identity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, created, updated, resources, watchlist);
+    return Objects.hash(id, status, owner, score, created, updated, resources, watchlist);
   }
 
 
@@ -238,6 +283,8 @@ public class Identity {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    score: ").append(toIndentedString(score)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    resources: ").append(toIndentedString(resources)).append("\n");

@@ -5,6 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | Unique ID of the identity |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | Current state of the identity in Passbase&#x27;s systems |  [optional]
+**owner** | [**IdentityOwner**](IdentityOwner.md) |  |  [optional]
+**score** | **Double** | Float between 0 and 1 representing our confidence that this identity is valid. 0 meaning we couldn&#x27;t verify any of the information provided with accuracy, and 1 absolute confidence. |  [optional]
 **created** | **Long** | Unix-timestamp of when the identity was created |  [optional]
 **updated** | **Long** | Unix-timestamp of when the identity was updated |  [optional]
 **resources** | [**java.util.List&lt;IdentityResource&gt;**](IdentityResource.md) | resources attached to a verification |  [optional]

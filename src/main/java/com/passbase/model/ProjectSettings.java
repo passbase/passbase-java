@@ -112,10 +112,10 @@ public class ProjectSettings {
   }
 
    /**
-   * slugs are meant to be a way to verify people just with the link
+   * Slugs are meant to be a way to verify people just with the link
    * @return slug
   **/
-  @Schema(example = "passbase-demo", description = "slugs are meant to be a way to verify people just with the link")
+  @Schema(example = "passbase-demo", description = "Slugs are meant to be a way to verify people just with the link")
   public String getSlug() {
     return slug;
   }
