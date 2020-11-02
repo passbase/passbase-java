@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.passbase</groupId>
   <artifactId>passbase</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.passbase:passbase:1.0.2"
+compile "com.passbase:passbase:1.0.3"
 ```
 
 ### Others
