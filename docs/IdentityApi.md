@@ -4,10 +4,65 @@ All URIs are relative to *https://api.passbase.com/verification/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getIdentityResourceById**](IdentityApi.md#getIdentityResourceById) | **GET** /identities/{id}/resource/{resource_id} | Get resource
-[**getIdentyById**](IdentityApi.md#getIdentyById) | **GET** /identities/{id} | Get identity
+[**getIdentityById**](IdentityApi.md#getIdentityById) | **GET** /identities/{id} | Get identity
+[**getIdentityResourceById**](IdentityApi.md#getIdentityResourceById) | **GET** /identity/{id}/resources/{resource_id} | Get resource
 [**listIdentities**](IdentityApi.md#listIdentities) | **GET** /identities | List identities
-[**listIdentityResources**](IdentityApi.md#listIdentityResources) | **GET** /identities/{id}/resources | List resources
+[**listIdentityResources**](IdentityApi.md#listIdentityResources) | **GET** /identity/{id}/resources | List resources
+
+<a name="getIdentityById"></a>
+# **getIdentityById**
+> Identity getIdentityById(id)
+
+Get identity
+
+Retrieve an identity by providing the identity ID.
+
+### Example
+```java
+// Import classes:
+//import com.passbase.ApiClient;
+//import com.passbase.ApiException;
+//import com.passbase.Configuration;
+//import com.passbase.auth.*;
+//import com.passbase.api.IdentityApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: SecretApiKey
+ApiKeyAuth SecretApiKey = (ApiKeyAuth) defaultClient.getAuthentication("SecretApiKey");
+SecretApiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SecretApiKey.setApiKeyPrefix("Token");
+
+IdentityApi apiInstance = new IdentityApi();
+java.util.UUID id = new java.util.UUID(); // java.util.UUID | Unique ID of the identity to return
+try {
+    Identity result = apiInstance.getIdentityById(id);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling IdentityApi#getIdentityById");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**java.util.UUID**](.md)| Unique ID of the identity to return |
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[SecretApiKey](../README.md#SecretApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 <a name="getIdentityResourceById"></a>
 # **getIdentityResourceById**
@@ -56,61 +111,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Resource**](Resource.md)
-
-### Authorization
-
-[SecretApiKey](../README.md#SecretApiKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getIdentyById"></a>
-# **getIdentyById**
-> java.util.List&lt;Identity&gt; getIdentyById(id)
-
-Get identity
-
-Retrieve an identity by providing the identity ID.
-
-### Example
-```java
-// Import classes:
-//import com.passbase.ApiClient;
-//import com.passbase.ApiException;
-//import com.passbase.Configuration;
-//import com.passbase.auth.*;
-//import com.passbase.api.IdentityApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: SecretApiKey
-ApiKeyAuth SecretApiKey = (ApiKeyAuth) defaultClient.getAuthentication("SecretApiKey");
-SecretApiKey.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//SecretApiKey.setApiKeyPrefix("Token");
-
-IdentityApi apiInstance = new IdentityApi();
-java.util.UUID id = new java.util.UUID(); // java.util.UUID | Unique ID of the identity to return
-try {
-    java.util.List<Identity> result = apiInstance.getIdentyById(id);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling IdentityApi#getIdentyById");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | [**java.util.UUID**](.md)| Unique ID of the identity to return |
-
-### Return type
-
-[**java.util.List&lt;Identity&gt;**](Identity.md)
 
 ### Authorization
 

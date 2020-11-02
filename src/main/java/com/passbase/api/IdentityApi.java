@@ -53,6 +53,131 @@ public class IdentityApi {
     }
 
     /**
+     * Build call for getIdentityById
+     * @param id Unique ID of the identity to return (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getIdentityByIdCall(java.util.UUID id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/identities/{id}"
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();
+        java.util.List<Pair> localVarCollectionQueryParams = new java.util.ArrayList<Pair>();
+
+        java.util.Map<String, String> localVarHeaderParams = new java.util.HashMap<String, String>();
+
+        java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "SecretApiKey" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getIdentityByIdValidateBeforeCall(java.util.UUID id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getIdentityById(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getIdentityByIdCall(id, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Get identity
+     * Retrieve an identity by providing the identity ID.
+     * @param id Unique ID of the identity to return (required)
+     * @return Identity
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Identity getIdentityById(java.util.UUID id) throws ApiException {
+        ApiResponse<Identity> resp = getIdentityByIdWithHttpInfo(id);
+        return resp.getData();
+    }
+
+    /**
+     * Get identity
+     * Retrieve an identity by providing the identity ID.
+     * @param id Unique ID of the identity to return (required)
+     * @return ApiResponse&lt;Identity&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Identity> getIdentityByIdWithHttpInfo(java.util.UUID id) throws ApiException {
+        com.squareup.okhttp.Call call = getIdentityByIdValidateBeforeCall(id, null, null);
+        Type localVarReturnType = new TypeToken<Identity>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get identity (asynchronously)
+     * Retrieve an identity by providing the identity ID.
+     * @param id Unique ID of the identity to return (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getIdentityByIdAsync(java.util.UUID id, final ApiCallback<Identity> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getIdentityByIdValidateBeforeCall(id, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Identity>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for getIdentityResourceById
      * @param id Identity id (required)
      * @param resourceId Resource id (required)
@@ -65,7 +190,7 @@ public class IdentityApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/identities/{id}/resource/{resource_id}"
+        String localVarPath = "/identity/{id}/resources/{resource_id}"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()))
             .replaceAll("\\{" + "resource_id" + "\\}", apiClient.escapeString(resourceId.toString()));
 
@@ -183,131 +308,6 @@ public class IdentityApi {
 
         com.squareup.okhttp.Call call = getIdentityResourceByIdValidateBeforeCall(id, resourceId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Resource>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getIdentyById
-     * @param id Unique ID of the identity to return (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call getIdentyByIdCall(java.util.UUID id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // create path and map variables
-        String localVarPath = "/identities/{id}"
-            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
-
-        java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();
-        java.util.List<Pair> localVarCollectionQueryParams = new java.util.ArrayList<Pair>();
-
-        java.util.Map<String, String> localVarHeaderParams = new java.util.HashMap<String, String>();
-
-        java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "SecretApiKey" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-    
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getIdentyByIdValidateBeforeCall(java.util.UUID id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getIdentyById(Async)");
-        }
-        
-        com.squareup.okhttp.Call call = getIdentyByIdCall(id, progressListener, progressRequestListener);
-        return call;
-
-        
-        
-        
-        
-    }
-
-    /**
-     * Get identity
-     * Retrieve an identity by providing the identity ID.
-     * @param id Unique ID of the identity to return (required)
-     * @return java.util.List&lt;Identity&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public java.util.List<Identity> getIdentyById(java.util.UUID id) throws ApiException {
-        ApiResponse<java.util.List<Identity>> resp = getIdentyByIdWithHttpInfo(id);
-        return resp.getData();
-    }
-
-    /**
-     * Get identity
-     * Retrieve an identity by providing the identity ID.
-     * @param id Unique ID of the identity to return (required)
-     * @return ApiResponse&lt;java.util.List&lt;Identity&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<java.util.List<Identity>> getIdentyByIdWithHttpInfo(java.util.UUID id) throws ApiException {
-        com.squareup.okhttp.Call call = getIdentyByIdValidateBeforeCall(id, null, null);
-        Type localVarReturnType = new TypeToken<java.util.List<Identity>>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Get identity (asynchronously)
-     * Retrieve an identity by providing the identity ID.
-     * @param id Unique ID of the identity to return (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getIdentyByIdAsync(java.util.UUID id, final ApiCallback<java.util.List<Identity>> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getIdentyByIdValidateBeforeCall(id, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<java.util.List<Identity>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -453,7 +453,7 @@ public class IdentityApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/identities/{id}/resources"
+        String localVarPath = "/identity/{id}/resources"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();

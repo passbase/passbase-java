@@ -30,6 +30,21 @@ public class IdentityApiTest {
     private final IdentityApi api = new IdentityApi();
 
     /**
+     * Get identity
+     *
+     * Retrieve an identity by providing the identity ID.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getIdentityByIdTest() throws ApiException {
+        java.util.UUID id = null;
+        Identity response = api.getIdentityById(id);
+
+        // TODO: test validations
+    }
+    /**
      * Get resource
      *
      * Get a resource attached to an identity by providing the resource ID. 
@@ -42,21 +57,6 @@ public class IdentityApiTest {
         String id = null;
         String resourceId = null;
         Resource response = api.getIdentityResourceById(id, resourceId);
-
-        // TODO: test validations
-    }
-    /**
-     * Get identity
-     *
-     * Retrieve an identity by providing the identity ID.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getIdentyByIdTest() throws ApiException {
-        java.util.UUID id = null;
-        java.util.List<Identity> response = api.getIdentyById(id);
 
         // TODO: test validations
     }
