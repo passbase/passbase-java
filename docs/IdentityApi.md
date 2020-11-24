@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getIdentityById**](IdentityApi.md#getIdentityById) | **GET** /identities/{id} | Get identity
 [**getIdentityResourceById**](IdentityApi.md#getIdentityResourceById) | **GET** /identity/{id}/resources/{resource_id} | Get resource
+[**getIdentityResourceFileById**](IdentityApi.md#getIdentityResourceFileById) | **GET** /identity/{id}/resources/{resource_id}/resource_files/{resource_file_id} | Get resource file
 [**listIdentities**](IdentityApi.md#listIdentities) | **GET** /identities | List identities
 [**listIdentityResources**](IdentityApi.md#listIdentityResources) | **GET** /identity/{id}/resources | List resources
 
@@ -111,6 +112,65 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Resource**](Resource.md)
+
+### Authorization
+
+[SecretApiKey](../README.md#SecretApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getIdentityResourceFileById"></a>
+# **getIdentityResourceFileById**
+> ResourceFile getIdentityResourceFileById(id, resourceId, resourceFileId)
+
+Get resource file
+
+Get a raw resource file attached to an identity by providing the resource ID and the resource file ID. This is a protected route and you&#x27;ll need a specific government authorization to access it. 
+
+### Example
+```java
+// Import classes:
+//import com.passbase.ApiClient;
+//import com.passbase.ApiException;
+//import com.passbase.Configuration;
+//import com.passbase.auth.*;
+//import com.passbase.api.IdentityApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: SecretApiKey
+ApiKeyAuth SecretApiKey = (ApiKeyAuth) defaultClient.getAuthentication("SecretApiKey");
+SecretApiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SecretApiKey.setApiKeyPrefix("Token");
+
+IdentityApi apiInstance = new IdentityApi();
+String id = "id_example"; // String | Identity id
+String resourceId = "resourceId_example"; // String | Resource id
+String resourceFileId = "resourceFileId_example"; // String | Resource file id
+try {
+    ResourceFile result = apiInstance.getIdentityResourceFileById(id, resourceId, resourceFileId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling IdentityApi#getIdentityResourceFileById");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Identity id |
+ **resourceId** | **String**| Resource id |
+ **resourceFileId** | **String**| Resource file id |
+
+### Return type
+
+[**ResourceFile**](ResourceFile.md)
 
 ### Authorization
 

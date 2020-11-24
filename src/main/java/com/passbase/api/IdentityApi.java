@@ -30,6 +30,7 @@ import com.passbase.model.Identity;
 import com.passbase.model.PaginatedIdentities;
 import com.passbase.model.PaginatedResources;
 import com.passbase.model.Resource;
+import com.passbase.model.ResourceFile;
 
 import java.lang.reflect.Type;
 
@@ -308,6 +309,149 @@ public class IdentityApi {
 
         com.squareup.okhttp.Call call = getIdentityResourceByIdValidateBeforeCall(id, resourceId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Resource>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getIdentityResourceFileById
+     * @param id Identity id (required)
+     * @param resourceId Resource id (required)
+     * @param resourceFileId Resource file id (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getIdentityResourceFileByIdCall(String id, String resourceId, String resourceFileId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/identity/{id}/resources/{resource_id}/resource_files/{resource_file_id}"
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()))
+            .replaceAll("\\{" + "resource_id" + "\\}", apiClient.escapeString(resourceId.toString()))
+            .replaceAll("\\{" + "resource_file_id" + "\\}", apiClient.escapeString(resourceFileId.toString()));
+
+        java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();
+        java.util.List<Pair> localVarCollectionQueryParams = new java.util.ArrayList<Pair>();
+
+        java.util.Map<String, String> localVarHeaderParams = new java.util.HashMap<String, String>();
+
+        java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "SecretApiKey" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getIdentityResourceFileByIdValidateBeforeCall(String id, String resourceId, String resourceFileId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getIdentityResourceFileById(Async)");
+        }
+        // verify the required parameter 'resourceId' is set
+        if (resourceId == null) {
+            throw new ApiException("Missing the required parameter 'resourceId' when calling getIdentityResourceFileById(Async)");
+        }
+        // verify the required parameter 'resourceFileId' is set
+        if (resourceFileId == null) {
+            throw new ApiException("Missing the required parameter 'resourceFileId' when calling getIdentityResourceFileById(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getIdentityResourceFileByIdCall(id, resourceId, resourceFileId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Get resource file
+     * Get a raw resource file attached to an identity by providing the resource ID and the resource file ID. This is a protected route and you&#x27;ll need a specific government authorization to access it. 
+     * @param id Identity id (required)
+     * @param resourceId Resource id (required)
+     * @param resourceFileId Resource file id (required)
+     * @return ResourceFile
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ResourceFile getIdentityResourceFileById(String id, String resourceId, String resourceFileId) throws ApiException {
+        ApiResponse<ResourceFile> resp = getIdentityResourceFileByIdWithHttpInfo(id, resourceId, resourceFileId);
+        return resp.getData();
+    }
+
+    /**
+     * Get resource file
+     * Get a raw resource file attached to an identity by providing the resource ID and the resource file ID. This is a protected route and you&#x27;ll need a specific government authorization to access it. 
+     * @param id Identity id (required)
+     * @param resourceId Resource id (required)
+     * @param resourceFileId Resource file id (required)
+     * @return ApiResponse&lt;ResourceFile&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<ResourceFile> getIdentityResourceFileByIdWithHttpInfo(String id, String resourceId, String resourceFileId) throws ApiException {
+        com.squareup.okhttp.Call call = getIdentityResourceFileByIdValidateBeforeCall(id, resourceId, resourceFileId, null, null);
+        Type localVarReturnType = new TypeToken<ResourceFile>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get resource file (asynchronously)
+     * Get a raw resource file attached to an identity by providing the resource ID and the resource file ID. This is a protected route and you&#x27;ll need a specific government authorization to access it. 
+     * @param id Identity id (required)
+     * @param resourceId Resource id (required)
+     * @param resourceFileId Resource file id (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getIdentityResourceFileByIdAsync(String id, String resourceId, String resourceFileId, final ApiCallback<ResourceFile> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getIdentityResourceFileByIdValidateBeforeCall(id, resourceId, resourceFileId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ResourceFile>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

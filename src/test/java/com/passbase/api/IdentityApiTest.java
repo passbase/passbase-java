@@ -17,6 +17,7 @@ import com.passbase.model.Identity;
 import com.passbase.model.PaginatedIdentities;
 import com.passbase.model.PaginatedResources;
 import com.passbase.model.Resource;
+import com.passbase.model.ResourceFile;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -57,6 +58,23 @@ public class IdentityApiTest {
         String id = null;
         String resourceId = null;
         Resource response = api.getIdentityResourceById(id, resourceId);
+
+        // TODO: test validations
+    }
+    /**
+     * Get resource file
+     *
+     * Get a raw resource file attached to an identity by providing the resource ID and the resource file ID. This is a protected route and you&#x27;ll need a specific government authorization to access it. 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getIdentityResourceFileByIdTest() throws ApiException {
+        String id = null;
+        String resourceId = null;
+        String resourceFileId = null;
+        ResourceFile response = api.getIdentityResourceFileById(id, resourceId, resourceFileId);
 
         // TODO: test validations
     }
