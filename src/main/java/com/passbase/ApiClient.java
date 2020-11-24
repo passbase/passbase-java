@@ -84,7 +84,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("passbase/java@1.1.0");
+        setUserAgent("passbase/java@1.2.0");
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications = new HashMap<String, Authentication>();
