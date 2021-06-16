@@ -26,7 +26,7 @@
    <dependency>
    <groupId>com.passbase</groupId>
    <artifactId>passbase</artifactId>
-   <version>1.2.0</version>
+   <version>1.3.0</version>
    <scope>compile</scope>
    </dependency>
    ```
@@ -34,7 +34,7 @@
    Gradle users, add this dependency to your project's build.gradle:
 
    ```groovy
-   compile "com.passbase:passbase:1.2.0"
+   compile "com.passbase:passbase:1.3.0"
    ```
 
 3. You should now be able to import `com.passbase.*` into your Java project
