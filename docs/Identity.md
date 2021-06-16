@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **created** | **Long** | Unix-timestamp of when the identity was created |  [optional]
 **updated** | **Long** | Unix-timestamp of when the identity was updated |  [optional]
 **resources** | [**java.util.List&lt;IdentityResource&gt;**](IdentityResource.md) | resources attached to a verification |  [optional]
+**metadata** | **Object** | Customer defined arbitrary payload initially passed through the client-sdk |  [optional]
 **watchlist** | [**WatchlistResponse**](WatchlistResponse.md) |  |  [optional]
 
 <a name="StatusEnum"></a>

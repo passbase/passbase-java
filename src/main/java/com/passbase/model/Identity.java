@@ -73,7 +73,7 @@ public class Identity {
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        Object value = jsonReader.nextString();
         return StatusEnum.fromValue(String.valueOf(value));
       }
     }
@@ -94,6 +94,9 @@ public class Identity {
 
   @SerializedName("resources")
   private java.util.List<IdentityResource> resources = null;
+
+  @SerializedName("metadata")
+  private Object metadata = null;
 
   @SerializedName("watchlist")
   private WatchlistResponse watchlist = null;
@@ -232,6 +235,24 @@ public class Identity {
     this.resources = resources;
   }
 
+  public Identity metadata(Object metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+   /**
+   * Customer defined arbitrary payload initially passed through the client-sdk
+   * @return metadata
+  **/
+  @Schema(example = "{\"foo\":\"bar\"}", description = "Customer defined arbitrary payload initially passed through the client-sdk")
+  public Object getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Object metadata) {
+    this.metadata = metadata;
+  }
+
   public Identity watchlist(WatchlistResponse watchlist) {
     this.watchlist = watchlist;
     return this;
@@ -267,12 +288,13 @@ public class Identity {
         Objects.equals(this.created, identity.created) &&
         Objects.equals(this.updated, identity.updated) &&
         Objects.equals(this.resources, identity.resources) &&
+        Objects.equals(this.metadata, identity.metadata) &&
         Objects.equals(this.watchlist, identity.watchlist);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, owner, score, created, updated, resources, watchlist);
+    return Objects.hash(id, status, owner, score, created, updated, resources, metadata, watchlist);
   }
 
 
@@ -288,6 +310,7 @@ public class Identity {
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    resources: ").append(toIndentedString(resources)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    watchlist: ").append(toIndentedString(watchlist)).append("\n");
     sb.append("}");
     return sb.toString();

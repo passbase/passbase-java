@@ -67,7 +67,7 @@ public class ResourceFilesInner {
 
       @Override
       public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        Object value = jsonReader.nextString();
         return TypeEnum.fromValue(String.valueOf(value));
       }
     }

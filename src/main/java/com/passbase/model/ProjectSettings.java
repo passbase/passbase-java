@@ -72,7 +72,7 @@ public class ProjectSettings {
 
       @Override
       public EnvironmentEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        Object value = jsonReader.nextString();
         return EnvironmentEnum.fromValue(String.valueOf(value));
       }
     }
