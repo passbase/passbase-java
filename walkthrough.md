@@ -42,7 +42,7 @@
 ```java
 import com.passbase.*;
 import com.passbase.api.ProjectApi;
-import com.passbase.model.ProjectSettings;
+import com.passbase.model.Identity;
 import java.util.List;
 import java.util.Map;
 
@@ -50,22 +50,22 @@ public final class App {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setApiKey("{{YOUR_SECRET_API_KEY}}");
-        ProjectApi apiInstance = new ProjectApi(defaultClient);
+        ProjectApi apiInstance = new IdentityApi(defaultClient);
 
         try {
             // sync
-            ProjectSettings settings = apiInstance.getSettings();
-            System.out.println(settings);
+            Identity identity = apiInstance.getIdentityById("<uuid>");
+            System.out.println(identity);
 
             // or async
-            apiInstance.getSettingsAsync(new ApiCallback<ProjectSettings>() {
+            apiInstance.getIdentityByIdAsync("<uuid>", new ApiCallback<Identity>() {
                 public void onFailure(ApiException e, int statusCode, Map<String, List<String>> responseHeaders) {
                     printError(e);
                 }
 
-                public void onSuccess(ProjectSettings settings, int statusCode,
+                public void onSuccess(Identity identity, int statusCode,
                         Map<String, List<String>> responseHeaders) {
-                    System.out.println(settings);
+                    System.out.println(identity);
                 }
 
                 public void onUploadProgress(long bytesWritten, long contentLength, boolean done) {
@@ -82,7 +82,7 @@ public final class App {
     }
 
     private static void printError(ApiException e) {
-        System.err.println("Exception when calling ProjectApi#getSettings");
+        System.err.println("Exception when calling IdentityApi#getIdentityById");
         System.err.println("Status code: " + e.getCode());
         System.err.println("Reason: " + e.getResponseBody());
         System.err.println("Response headers: " + e.getResponseHeaders());
