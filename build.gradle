@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.+'
@@ -13,12 +13,19 @@ buildscript {
     }
 }
 
-plugins {
-    id 'java'
-    id 'java-library'
-    id 'maven'
-    id 'maven-publish'
-    id 'signing'
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+dependencies {
+    implementation 'io.swagger.core.v3:swagger-annotations:2.0.0'
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+    implementation 'com.squareup.okhttp:logging-interceptor:2.7.5'
+    implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'io.gsonfire:gson-fire:1.8.3'
+    implementation 'javax.annotation:jsr250-api:1.0'
+    testImplementation 'junit:junit:4.12'
 }
 
 group = 'com.passbase'
@@ -27,7 +34,6 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
-    jcenter()
     mavenCentral()
     repositories {
         maven {
@@ -78,24 +84,7 @@ publishing {
     }
 }
 
-
-install {
-    repositories.mavenInstaller {
-        pom.artifactId = 'passbase'
-    }
-}
-
 task execute(type:JavaExec) {
-    main = System.getProperty('mainClass')
+    mainClass = System.getProperty('mainClass')
     classpath = sourceSets.main.runtimeClasspath
-}
-
-dependencies {
-    compile 'io.swagger.core.v3:swagger-annotations:2.0.0'
-    compile 'com.squareup.okhttp:okhttp:2.7.5'
-    compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
-    compile 'com.google.code.gson:gson:2.8.1'
-    compile 'io.gsonfire:gson-fire:1.8.3'
-    compile 'javax.annotation:jsr250-api:1.0'
-    testCompile 'junit:junit:4.12'
 }
